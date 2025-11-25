@@ -56,7 +56,7 @@ _From the list above, identify the **5 or 6 specific use cases** you will implem
 
 1.  **User Authentication** (Registration/Login)
 2.  [Use Case 2 Title]
-3.  [Use Case 3 Title]
+3.  **buyer creates a transaction**
 4.  [Use Case 4 Title]
 5.  [Use Case 5 Title]
 6.  [Use Case 6 Title - if 6 members]
@@ -71,7 +71,8 @@ _Assign one distinct use case from Section 3.2 to each team member. This member 
 | :---------- | :---------------------- | :----------------------------------------------- |
 | [malak kotb] | **User Authentication** | Register, Login, JWT handling, Password Hashing. |
 | [Kenzy Sameh] |**Bank Dashboard**     | Implement bank dashboard with farmer list, search, and financial history view including monthly income overview.       |
-| [Student 3] | [Use Case 3]            | [e.g., Profile management and updates]           |
+| [Nada Ehab]| **buyer transactions**            |**It allows buyers to record a digital purchase by selecting a farmer and entering the transaction details (amount, quantity, produce type).**
+         |
 | [Student 4] | [Use Case 4]            | [e.g., Transfer funds logic]                     |
 | [Student 5] | [Use Case 5]            | [Description]                                    |
 | [Student 6] | [Use Case 6]            | [Description]                                    |
@@ -96,10 +97,18 @@ const UserSchema = new mongoose.Schema({
 module.exports = mongoose.model("User", userSchema);
 ```
 
-### [Model 2 Name] Schema
+### Buyer transaction Schema
 
 ```javascript
-// Define schema here
+const TransactionSchema = new mongoose.Schema({
+  farmerId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  buyerId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  amount: { type: Number, required: true },
+  quantity: { type: Number, required: true },
+  produceType: { type: String, required: true },
+  timestamp: { type: Date, default: Date.now }
+});
+
 ```
 
 ### [Model 3 Name] Schema
