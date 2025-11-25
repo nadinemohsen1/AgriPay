@@ -76,7 +76,7 @@ _Assign one distinct use case from Section 3.2 to each team member. This member 
 | Team Member       | Assigned Use Case          | Brief Description of Responsibility                                                                 |
 | :---------------- | :------------------------ | :-------------------------------------------------------------------------------------------------- |
 | Malak Kotb        | User Authentication       | Register, Login, JWT handling, Password Hashing.                                                   |
-| Kenzy Sameh       | Bank Dashboard            | Implement bank dashboard with farmer list, search, and financial history view including monthly income overview. |
+| Kenzy Sameh       | Bank Dashboard            | Implement bank dashboard with farmer list, search, and financial history view including simple query functions(e.g. view monthly income summary.) |
 | Nada Ehab         | Farmer Transactions        | Allows farmers to record a digital purchase by entering the transaction details (amount, quantity, produce type). |
 | Chantal Victor    | Farmer Profile Management | Farmer profile management and activity summary (farmer details, total income, produce types, last 10 transactions). |
 | Nadine Mohsen     | Financial History         |  compiles all recorded farmer transactions into a clear digital income record. |
