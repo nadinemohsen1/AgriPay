@@ -70,7 +70,7 @@ _Assign one distinct use case from Section 3.2 to each team member. This member 
 | Team Member | Assigned Use Case       | Brief Description of Responsibility              |
 | :---------- | :---------------------- | :----------------------------------------------- |
 | [malak kotb] | **User Authentication** | Register, Login, JWT handling, Password Hashing. |
-| [Student 2] | [Use Case 2]            | [e.g., Create and view Transaction history]      |
+| [Kenzy Sameh] |**Bank Dashboard**     | Implement bank dashboard with farmer list, search, and financial history view including monthly income overview.       |
 | [Student 3] | [Use Case 3]            | [e.g., Profile management and updates]           |
 | [Student 4] | [Use Case 4]            | [e.g., Transfer funds logic]                     |
 | [Student 5] | [Use Case 5]            | [Description]                                    |
