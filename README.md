@@ -27,10 +27,10 @@ _List all team members (5-6 students) below._
 
 - **Concept:** AgriPay — Digital Records for Cash-Based Farming
 Small farmers with less than 5 acres are unable to access loan services because they operate entirely in cash, leaving no digital record of their income and preventing banks from assessing their creditworthiness.
- AgriPay solves this by providing a simple platform where buyers can log each cash transaction they make with farmers, allowing the system to automatically build a verified digital financial history. 
+ AgriPay solves this by providing a simple platform where farmers can log each cash transaction they make, allowing the system to automatically build a verified digital financial history. 
 Farmers use the app to view their sales history, monthly income, cash flow and request loans; 
-buyers record transactions by selecting a farmer and entering the amount, quantity, and produce type;
-and banks access dashboards showing farmers’ verified transaction histories, income trends, and loan requests. This enables fair credit scoring, improves cash management for buyers, and gives farmers financial visibility without changing how they work.
+farmers record transactions by entering the id, amount, quantity, and produce type;
+and banks access dashboards (by inserting farmer's id) showing farmers’ verified transaction histories, income trends, and loan requests. This enables fair credit scoring, improves cash management for farmers, and gives farmers financial visibility without changing how they work.
 
 ---
 
@@ -77,9 +77,9 @@ _Assign one distinct use case from Section 3.2 to each team member. This member 
 | :---------------- | :------------------------ | :-------------------------------------------------------------------------------------------------- |
 | Malak Kotb        | User Authentication       | Register, Login, JWT handling, Password Hashing.                                                   |
 | Kenzy Sameh       | Bank Dashboard            | Implement bank dashboard with farmer list, search, and financial history view including monthly income overview. |
-| Nada Ehab         | Buyer Transactions        | Allows buyers to record a digital purchase by selecting a farmer and entering the transaction details (amount, quantity, produce type). |
-| Chantal Victor    | Farmer Profile Management | Farmer profile management and activity summary (farmer details, total income, transaction summary, produce types, last 10 transactions). |
-| Nadine Mohsen     | Financial History         |  compiles all recorded buyer-to-farmer transactions into a clear digital income record. |
+| Nada Ehab         | Farmer Transactions        | Allows farmers to record a digital purchase by entering the transaction details (amount, quantity, produce type). |
+| Chantal Victor    | Farmer Profile Management | Farmer profile management and activity summary (farmer details, total income, produce types, last 10 transactions). |
+| Nadine Mohsen     | Financial History         |  compiles all recorded farmer transactions into a clear digital income record. |
 | Mariam Nasser         |        Loan Application Module         | farmer requests loan, amount and reason stored, bank officer reviews, status updated to pending/approved/rejected                                                                                        |
 
 
@@ -97,7 +97,7 @@ const UserSchema = new mongoose.Schema({
   username: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  role: { type: String, enum: ["farmer", "buyer", "bankOfficer"], required: true},
+  role: { type: String, enum: ["farmer", "bankOfficer"], required: true},
   phone: {type: String},
   createdAt: {type: Date,default: Date.now}
 });
@@ -130,11 +130,6 @@ module.exports = mongoose.model("Transaction", TransactionSchema);
 const FinancialHistorySchema = new mongoose.Schema({
   farmerId: { 
     type: String,   // national ID of the farmer
-    required: true 
-  },
-
-  buyerId: { 
-    type: String,   // national ID of the buyer
     required: true 
   },
 
@@ -187,7 +182,6 @@ module.exports = mongoose.model("LoanApplication", LoanApplicationSchema);
 ```javascript
 const TransactionSchema = new mongoose.Schema({
   farmerId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  buyerId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   amount: { type: Number, required: true },
   quantity: { type: Number, required: true },
   produceType: { type: String, required: true },
