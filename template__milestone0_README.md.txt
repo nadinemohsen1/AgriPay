@@ -22,7 +22,7 @@ _List all team members (5-6 students) below._
 | Name             | Student ID | Tutorial Group | GitHub Username |
 | :--------------- | :--------- | :------------- | :-------------- |
 | [Nada Ehab] | [13002151]       | [T5]           | [@Nada514]     |
-| [Student 2 Name] | [ID]       | [T#]           | [@username]     |
+| [Malak Kotb] | [13001812]       | [T1]           | [@malak-prog]     |
 | [Student 3 Name] | [ID]       | [T#]           | [@username]     |
 | [Student 4 Name] | [ID]       | [T#]           | [@username]     |
 | [Student 5 Name] | [ID]       | [T#]           | [@username]     |
