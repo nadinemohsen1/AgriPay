@@ -93,6 +93,7 @@ const UserSchema = new mongoose.Schema({
   phone: {type: String},
   createdAt: {type: Date,default: Date.now}
 });
+module.exports = mongoose.model("User", userSchema);
 ```
 
 ### [Model 2 Name] Schema
