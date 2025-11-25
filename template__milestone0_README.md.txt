@@ -74,7 +74,7 @@ _Assign one distinct use case from Section 3.2 to each team member. This member 
 | [Nada Ehab]| **buyer transactions**            |**It allows buyers to record a digital purchase by selecting a farmer and entering the transaction details (amount, quantity, produce type).**
          |
 | [Chantal Victor] | **Farmer Profile Management**   |[Farmer Profile management and activity summary (farmer details, total income, transaction summary, produce types, last 10 transactions)]                     |
-| [Student 5] | [Use Case 5]            | [Description]                                    |
+| [Maryam Nasser] | **Loan Application**            | [Loan Application (farmer requests loan, amount and reason stored, bank officer reviews, status updated to pending/approved/rejected)]                                    |
 | [Student 6] | [Use Case 6]            | [Description]                                    |
 
 ---
@@ -131,3 +131,29 @@ const TransactionSchema = new mongoose.Schema({
 
 module.exports = mongoose.model("Transaction", TransactionSchema);
 ```
+### Loan Applictaion 
+const LoanApplicationSchema = new mongoose.Schema({
+    farmerId: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "User", 
+        required: true 
+    },
+    bankOfficerId: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "User" 
+    },
+    amountRequested: { 
+        type: Number, 
+        required: true 
+    },
+    reason: { 
+        type: String 
+    },
+    status: { 
+        type: String, 
+        enum: ["pending", "approved", "rejected"], 
+        default: "pending" 
+    }
+}, { timestamps: true });
+
+module.exports = mongoose.model("LoanApplication", LoanApplicationSchema);
