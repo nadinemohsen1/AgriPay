@@ -25,7 +25,7 @@ _List all team members (5-6 students) below._
 | [Malak Kotb]     |[13001812]  | [T1]           | [@malak-prog]   |
 | [Kenzy Sameh]    |[13001092]  | [T1]           | [@kkenzyssameh] |
 | [Maryam Nasser] | [13004116]  | [T5]           | [@maryamnasserr]|
-| [Student 5 Name] | [ID]       | [T#]           | [@username]     |
+| [Chantal Victor] |[13007378]  | [T5]           | [@Chantalvictor]     |
 | [Student 6 Name] | [ID]       | [T#]           | [@username]     |
 
 ---
@@ -73,7 +73,7 @@ _Assign one distinct use case from Section 3.2 to each team member. This member 
 | [Kenzy Sameh] |**Bank Dashboard**     | Implement bank dashboard with farmer list, search, and financial history view including monthly income overview.       |
 | [Nada Ehab]| **buyer transactions**            |**It allows buyers to record a digital purchase by selecting a farmer and entering the transaction details (amount, quantity, produce type).**
          |
-| [Student 4] | [Use Case 4]            | [e.g., Transfer funds logic]                     |
+| [Chantal Victor] | **Farmer Profile Management**   |[Farmer Profile management and activity summary (farmer details, total income, transaction summary, produce types, last 10 transactions)]                     |
 | [Student 5] | [Use Case 5]            | [Description]                                    |
 | [Student 6] | [Use Case 6]            | [Description]                                    |
 
@@ -111,8 +111,23 @@ const TransactionSchema = new mongoose.Schema({
 
 ```
 
-### [Model 3 Name] Schema
+### Farmer Profile Management Schema
+
 
 ```javascript
-// Define schema here
+const FarmerSchema = new mongoose.Schema({
+  farmerId: { type: String, required: true, unique: true },
+  name: { type: String, required: true },
+  contact: { type: String },
+});
+
+module.exports = mongoose.model("Farmer", FarmerSchema);
+const TransactionSchema = new mongoose.Schema({
+  farmerId: { type: String, required: true },
+  produceType: { type: String, required: true },
+  amount: { type: Number, required: true },
+  timestamp: { type: Date, default: Date.now }
+});
+
+module.exports = mongoose.model("Transaction", TransactionSchema);
 ```
