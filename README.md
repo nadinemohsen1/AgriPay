@@ -129,7 +129,7 @@ module.exports = mongoose.model("Transaction", TransactionSchema);
 ```javascript
 const FinancialHistorySchema = new mongoose.Schema({
   farmerId: { 
-    type: String,   // national ID of the farmer
+    type: String,   // national ID of the farmer.
     required: true 
   },
 
