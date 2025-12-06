@@ -30,7 +30,7 @@ Small farmers with less than 5 acres are unable to access loan services because 
  AgriPay solves this by providing a simple platform where farmers can log each cash transaction they make, allowing the system to automatically build a verified digital financial history. 
 Farmers use the app to view their sales history, monthly income, cash flow and request loans; 
 farmers record transactions by entering the id, amount, quantity, and produce type;
-and banks access dashboards (by inserting farmer's id) showing farmers’ verified transaction histories, income trends, and loan requests. This enables fair credit scoring, improves cash management for farmers, and gives farmers financial visibility without changing how they work.
+and banks access dashboards (by inserting farmer's id) showing farmers’ verified transaction histories, income trends, and loan requests. This enables fair credit scoring, improves cash management for farmers, and gives farmers financial visibility without changing how they work
 
 ---
 
