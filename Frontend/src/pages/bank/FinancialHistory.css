@@ -1,0 +1,63 @@
+/* financialHistory.css */
+
+/* Center the table container and page title */
+.page {
+  max-width: 900px;
+  margin: 40px auto; /* centers the content */
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Table styling */
+.financial-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Table headers */
+.financial-history-table th {
+  background-color: #4CAF50; /* green header */
+  color: white;
+  font-weight: 600;
+  padding: 12px 15px;
+  text-align: center;
+}
+
+/* Table cells */
+.financial-history-table td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Alternate row coloring for readability */
+.financial-history-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover effect */
+.financial-history-table tr:hover {
+  background-color: #e8f5e9; /* light green */
+  transition: 0.2s ease;
+}
+
+/* Page heading */
+.page h2 {
+  text-align: center;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+/* Responsive on smaller screens */
+@media (max-width: 600px) {
+  .financial-history-table th,
+  .financial-history-table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+}

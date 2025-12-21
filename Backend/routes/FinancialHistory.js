@@ -1,7 +1,6 @@
 import express from "express";
 import { 
-  createRecord, 
-  getAllRecords 
+  createRecord,getFarmerFinancialHistory 
 } from "../controllers/FinancialHistory.js";
 
 import { authenticate, authorize } from "../middleware/auth.js";
@@ -16,12 +15,7 @@ router.post(
   createRecord
 );
 
-// READ all
-router.get(
-  "/",
-  authenticate,
-  authorize("admin", "bankOfficer"),
-  getAllRecords
-);
+// GET financial history for a specific farmer
+router.get("/:farmerId", authenticate, authorize("bankOfficer", "admin"), getFarmerFinancialHistory);
 
 export default router;

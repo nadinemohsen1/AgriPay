@@ -1,0 +1,44 @@
+/* pages/transactions/transactions.css */
+.transactions-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.transactions-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.transactions-form input,
+.transactions-form select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.transactions-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.transactions-form button:hover {
+  background-color: #0d6efd;
+}
+
+.message {
+  text-align: center;
+  color: green;
+  margin-bottom: 15px;
+}

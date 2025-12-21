@@ -1,0 +1,85 @@
+/* =====================
+   AUTH PAGE CONTAINER
+===================== */
+.auth-container {
+  max-width: 380px;
+  margin: 80px auto;
+  padding: 32px;
+
+  background-color: var(--card);
+  border-radius: 14px;
+
+  /* Remove old flat border, add soft shadow */
+  border: none;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* =====================
+   TITLE
+===================== */
+.auth-title {
+  text-align: center;
+  margin-bottom: 8px;
+  font-size: 1.6rem;
+  color: var(--text);
+}
+
+/* Optional subtitle if you add one */
+.auth-subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* =====================
+   FORM LAYOUT
+===================== */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* =====================
+   INPUTS (works with InputField)
+===================== */
+.auth-form input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* =====================
+   BUTTON INSIDE AUTH
+===================== */
+.auth-form button {
+  margin-top: 10px;
+}
+
+/* =====================
+   ERROR MESSAGE
+===================== */
+.auth-error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* =====================
+   FOOTER LINK
+===================== */
+.auth-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}

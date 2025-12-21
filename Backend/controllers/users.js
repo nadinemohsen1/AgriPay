@@ -1,5 +1,4 @@
 import User from "../models/users.js";
-import FarmerProfile from "../models/FarmerProfile.js";
 import crypto from "crypto";
 import bcrypt from "bcryptjs";
 
@@ -43,17 +42,27 @@ export const updateUser = async (req, res) => {
 // Get farmer profile
 export const getFarmerProfile = async (req, res) => {
   try {
-    const profile = await FarmerProfile.findOne({ user: req.params.userId })
-      .populate("user", "-password");
+    const user = await User.findById(req.params.userId).select("-password");
+    if (!user) return res.status(404).json({ message: "Farmer not found" });
 
-    if (!profile) return res.status(404).json({ message: "Profile not found" });
+    // Optional: fetch transaction summary if you want to show totalIncome & produce types
+    const transactions = await Transaction.find({ farmerId: user._id }).sort({ timestamp: -1 });
 
-    res.json(profile);
+    const totalIncome = transactions.reduce((sum, t) => sum + t.amount, 0);
+    const produceTypes = [...new Set(transactions.map(t => t.produceType))];
+    const lastTenTransactions = transactions.slice(0, 10);
+
+    res.json({
+      user,
+      totalIncome,
+      produceTypes,
+      lastTenTransactions
+    });
+
   } catch (err) {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };
-
 // Forgot password
 export const forgotPassword = async (req, res) => {
   try {

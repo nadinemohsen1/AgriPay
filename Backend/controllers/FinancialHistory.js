@@ -10,12 +10,13 @@ export const createRecord = async (req, res) => {
   }
 };
 
-// READ all financial history records
-export const getAllRecords = async (req, res) => {
+// GET financial history for a specific farmer
+export const getFarmerFinancialHistory = async (req, res) => {
   try {
-    const records = await FinancialHistory.find();
+    const { farmerId } = req.params;
+    const records = await FinancialHistory.find({ farmerId }).sort({ date: -1 });
     res.json(records);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ message: "Failed to fetch financial history", error: err.message });
   }
 };

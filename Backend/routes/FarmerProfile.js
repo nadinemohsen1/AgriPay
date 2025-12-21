@@ -3,13 +3,12 @@ import {
   getFarmerProfile, 
   getFarmerActivitySummary 
 } from "../controllers/FarmerProfile.js";
+import { authenticate } from "../middleware/auth.js";
 
 const router = express.Router();
 
-// Get farmer profile
-router.get("/:farmerId", getFarmerProfile);
-
-// Get farmer activity summary (income, produce types, last 10 transactions)
-router.get("/:farmerId/activity-summary", getFarmerActivitySummary);
+// Protect routes
+router.get("/:farmerId", authenticate, getFarmerProfile);
+router.get("/:farmerId/activity-summary", authenticate, getFarmerActivitySummary);
 
 export default router;

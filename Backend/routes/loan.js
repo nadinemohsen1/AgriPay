@@ -41,6 +41,6 @@ router.put("/:id", authenticate, authorize("farmer"), updateLoan);
 router.delete("/:id", authenticate, authorize("farmer"), deleteLoan);
 
 // approve/reject (bank)
-router.put("/:id/review", authenticate, authorize("bankOfficer"), reviewLoan);
+router.patch("/:id/review", authenticate, authorize("bankOfficer"), reviewLoan);
 
 export default router;

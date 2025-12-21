@@ -1,21 +1,30 @@
-import Transaction from '../models/Transaction.js';
+import Transaction from "../models/Transaction.js";
+import FinancialHistory from "../models/FinancialHistory.js";
 
-// Create a new farmer transaction
 export const createTransaction = async (req, res) => {
   try {
-    const { amount, quantity, produceType } = req.body;
-
-    const transaction = new Transaction({
-      farmerId: req.user._id, // assuming user is authenticated farmer
-      amount,
-      quantity,
-      produceType
+    // Create transaction
+    const transaction = await Transaction.create({
+      farmerId: req.user.id,   
+      produceType: req.body.produceType,
+      quantity: req.body.quantity,
+      amount: req.body.amount,
     });
 
-    await transaction.save();
-    res.json({ message: "Transaction recorded successfully", transaction });
+    // Create financial history record
+    await FinancialHistory.create({
+      farmerId: req.user.id,           
+      transactionId: transaction._id,  
+      produceType: transaction.produceType,
+      quantity: transaction.quantity,
+      amount: transaction.amount,
+      month: new Date().getMonth() + 1,
+      year: new Date().getFullYear(),
+    });
 
+    res.status(201).json(transaction);
   } catch (err) {
-    res.status(500).json({ message: "Server error", error: err.message });
+    console.error("Transaction error:", err);
+    res.status(400).json({ error: err.message });
   }
 };

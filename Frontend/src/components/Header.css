@@ -1,0 +1,56 @@
+.header {
+  width: 100%;
+  background-color: #1b5e20; /* AgriPay green */
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.logo-icon {
+  margin-right: 8px;
+}
+
+.sidebar-toggle {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Breadcrumbs below header */
+.breadcrumbs {
+  padding: 5px 20px 10px;
+  font-size: 0.9rem;
+  background-color: #256524; /* slightly darker */
+}
+
+.breadcrumbs a {
+  color: #d1f2c1;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs .current {
+  color: #f0fdf4;
+  font-weight: 500;
+}

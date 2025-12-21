@@ -1,22 +1,22 @@
-import FarmerProfile from '../models/FarmerProfile.js';
+import User from '../models/users.js';
 import FinancialHistory from '../models/FinancialHistory.js';
-import Transaction from '../models/Transaction.js';
 import LoanApplication from '../models/LoanApplication.js';
 
-// Search farmers by name, nationalId, or contact
+// Search farmers by username, email, or phone
 export const searchFarmers = async (req, res) => {
   try {
     const { query } = req.query;
 
     if (!query) return res.status(400).json({ message: "Search query required" });
 
-    const farmers = await FarmerProfile.find({
+    const farmers = await User.find({
+      role: "farmer",
       $or: [
-        { name: { $regex: query, $options: 'i' } },
-        { nationalId: { $regex: query, $options: 'i' } },
-        { contact: { $regex: query, $options: 'i' } }
+        { username: { $regex: query, $options: 'i' } },
+        { email: { $regex: query, $options: 'i' } },
+        { phone: { $regex: query, $options: 'i' } },
       ]
-    }).populate('user', '-password');
+    }).select('-password'); // exclude password
 
     res.json(farmers);
 
@@ -30,38 +30,45 @@ export const getFarmerDashboard = async (req, res) => {
   try {
     const { farmerId } = req.params;
 
-    // Get farmer basic info
-    const farmer = await FarmerProfile.findOne({ user: farmerId }).populate('user', '-password');
+    // Fetch farmer
+    const farmer = await User.findById(farmerId).select('-password');
     if (!farmer) return res.status(404).json({ message: "Farmer not found" });
 
-    // Financial summary from FinancialHistory
+    // Fetch financial history
     const history = await FinancialHistory.find({ farmerId });
 
+    // Total income
     const totalIncome = history.reduce((sum, h) => sum + h.amount, 0);
 
-    // Monthly income summary
+    // Monthly income
     const monthlyIncome = {};
     history.forEach(h => {
       const key = `${h.year}-${h.month}`;
       monthlyIncome[key] = (monthlyIncome[key] || 0) + h.amount;
     });
 
-    // Unique produce types
+    // List of produce types
     const produceTypes = [...new Set(history.map(h => h.produceType))];
 
-    // Transaction history (optional: last 10)
-    const transactions = await Transaction.find({ farmerId }).sort({ timestamp: -1 }).limit(10);
-
-    // Loan applications
+    // Fetch loans
     const loans = await LoanApplication.find({ farmerId }).sort({ createdAt: -1 });
 
+    // Map loans to include reason and other necessary fields
+    const loansWithDetails = loans.map(l => ({
+      _id: l._id,
+      amount: l.amountRequested,
+      status: l.status,
+      createdAt: l.createdAt,
+      reason: l.reason || "N/A",
+    }));
+
+    // Send full response
     res.json({
       farmer,
       totalIncome,
       monthlyIncome,
       produceTypes,
-      lastTenTransactions: transactions,
-      loans
+      loans: loansWithDetails
     });
 
   } catch (err) {
